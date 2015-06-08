@@ -1,0 +1,220 @@
+{
+    "name": "Mandiant APT1",
+    "type": "Report",
+    "_children": [{
+        "name": "ThreatActor",
+        "type": "ThreatActor",
+        "_children": [{
+				"name": "dota; DOTA; Rodney Raith",
+				"size": 3812,
+				"type": "ThreatActor"    
+			}, {
+				"name": "Comment Crew",
+				"size": 6714,
+				"type": "ThreatActor"
+			}, {
+				"name": "Shady Rat",
+				"size": 743,
+				"type": "ThreatActor"
+			}, {
+				"name": "Comment Group",
+				"size": 6714,
+				"type": "ThreatActor"
+			}, {
+				"name": "China",
+				"size": 6714,
+				"type": "ThreatActor"
+			}, {
+				"name": "Ugly Gorilla; Wang Dong",
+				"type": "ThreatActor",
+				"_children":[{
+					"name": "TTP",
+					"type": "TTP",
+					"_children":[{
+						"name": "hugesoft.org",
+						"type": "Observable"
+					}]
+				},{
+					"name": "TTP",
+					"type": "TTP",
+					"_children":[{
+						"name": "Malware Behaviour: MANITSME",
+						"type": "Malware"
+					}]
+				}]
+			}, {
+				"name": "SuperHard; Mei Qiang",
+				"type": "ThreatActor",
+				"_children":[{
+					"name": "TTP",
+					"type": "TTP",
+					"_children":[{
+						"name": "Malware Behaviour: AURIGA",
+						"type": "Observable"
+					}]
+				},{
+					"name": "TTP",
+					"type": "TTP",
+					"_children":[{
+						"name": "Malware Behaviour: MANITSME",
+						"type": "Malware"
+					}]
+				}]
+			}, {
+				"name": "GSD 3rd Department",
+				"type": "ThreatActor",
+				"_children":[{
+					"name": "GSD 3rd Department",
+					"type": "ThreatActor",
+					"_children":[{
+						"name": "PLA General Staff",
+						"type": "ThreatActor",
+						"_children":[{
+							"name": "China",
+							"type": "ThreatActor"
+						}]
+					}]
+				}]
+			}, {
+				"name": "GSD 3rd Department",
+				"type": "ThreatActor",
+				"_children":[{
+					"name": "PLA General Staff",
+					"type": "ThreatActor",
+					"_children":[{
+						"name": "China",
+						"type": "ThreatActor"	
+					}]
+				}]
+			}, {
+				"name": "PLA General Staff",
+				"type": "ThreatActor",
+				"_children":[{
+					"name": "China",
+					"type": "ThreatActor"
+				}]
+			}]
+    }, {
+        "name": "TTP",
+        "type": "TTP",
+        "_children": [{
+				"name": "WEBC2 Backdoor",
+				"size": 1759,
+				"type": "TTP",
+				"_children":[{
+					"name": "Malware Behaviour: WEBC2",
+					"type": "Malware"
+				}]
+			}, {
+				"name": "APT1 C2 Servers Infra.",
+				"size": 2165,
+				"type": "TTP"
+			}, {
+				"name": "Doman Names Infra.",
+				"size": 586,
+				"type": "TTP",
+				"_children":[{
+					"name": "Registered DNS Zones Infra.",
+					"type": "TTP"
+				},{
+					"name": "Third-Party Services Infra.",
+					"type": "TTP"
+				},{
+					"name": "Hijacked FQDN Infra.",
+					"type": "TTP"
+				}]
+			}, {
+				"name": "Registered DNS Zones Infra.",
+				"size": 3331,
+				"type": "TTP"
+			}, {
+				"name": "Third-Party Services Infra.",
+				"size": 772,
+				"type": "TTP"
+			}, {
+				"name": "Hijacked FQDN Infra.",
+				"size": 3322,
+				"type": "TTP"
+			}, {
+				"name": "The Initial Compromise",
+				"size": 3322,
+				"type": "TTP",
+				"_children":[{
+					"name": "Attack Pattern",
+					"type": "AttackPatterns"
+				},{
+					"name": "Attack Pattern",
+					"type": "AttackPatterns"
+				}]
+			}, {
+				"name": "Establishing a Foothold",
+				"size": 3322,
+				"type": "TTP",
+				"_children":[{
+					"name": "Attack Pattern",
+					"type": "AttackPatterns"
+				},{
+					"name": "WEBC2 Backdoor",
+					"type": "TTP",
+					"_children":[{
+						"name": "Malware Behaviour: WEBC2",
+						"type": "Malware"
+					}]
+				},{
+					"name": "HTRAN Malware C2",
+					"type": "TTP",					
+					"_children":[{
+						"name": "Malware Behaviour: HUC Packet",
+						"type": "Malware"
+					}]
+
+				}]
+			}, {
+				"name": "Privilege Escalation",
+				"size": 3322,
+				"type": "TTP",
+				"_children":[{
+					"name": "Attack Pattern",
+					"type": "AttackPatterns"
+				},{
+					"name": "Tool; cachedump; fgdump",
+					"type": "Tool"
+				}]
+			}, {
+				"name": "Internal Reconnaisance",
+				"size": 3322,
+				"type": "TTP",
+				"_children":[{
+					"name": "Attack Pattern",
+					"type": "AttackPatterns"
+				}]
+			}, {
+				"name": "Lateral Movement",
+				"size": 3322,
+				"type": "TTP",
+				"_children":[{
+					"name": "Attack Pattern",
+					"type": "AttackPatterns"
+				}]
+			}, {
+				"name": "Maintain Presence",
+				"size": 3322,
+				"type": "TTP",
+				"_children":[{
+					"name": "Attack Pattern",
+					"type": "AttackPatterns"
+				}]
+			}, {
+				"name": "Completing the Mission",
+				"size": 3322,
+				"type": "TTP",
+				"_children":[{
+					"name": "Attack Pattern",
+					"type": "AttackPatterns"
+				},{
+					"name": "Tool; GETMAIL; MAPIGET",
+					"type": "Tool"
+				}]
+			}]
+    }]
+}

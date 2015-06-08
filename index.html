@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 
+
+STIX-VIZ REVOLUTION
+BY Sohaib Shaheen
+
+╭──────────────────────────────────────────╮
+│ ≡ Design & Front-end                     │
+╞══════════════════════════════════════════╡
+│                                          │
+│ SOHAIB SHAHEEN                           │
+├──────────┬───────────────────────────────┤
+│ Email    │ me@sohaibshaheen.com          │
+├──────────┼───────────────────────────────┤
+│ Twitter  │ @sohaibshaheen	               │               │
+╰──────────┴───────────────────────────────╯
+
+-->
+
+<!-- TITLE -->
+<title>STIX-VIZ REV.</title>
+
+<!-- CHARSET -->
+<meta charset="utf-8">
+
+<!-- jQuery Framework -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+<!-- Tipsy ToolTip - Needs jQuery  -->
+<script type="text/javascript" src="tipsy/tipsy.js"></script>
+<link type="text/css" rel="stylesheet" href="tipsy/tipsy.css"/>
+
+<!-- Semantic UI -->
+<script type="text/javascript" src="semantic/semantic.min.js"></script>
+<link type="text/css" rel="stylesheet" href="semantic/semantic.min.css"/>
+
+<!-- D3 Framework --> 
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+
+<!-- CUSTOM JS -->
+<script type="text/javascript">
+
+$(document).ready(function(e){
+		
+	// show dropdown - semantic ui	
+	$('.dropdown').dropdown({
+		transition: 'drop'
+	  });
+	
+	// expand and collapse buttons
+	$('.expandAll').click(function(e){
+		e.preventDefault();
+		expandAll();
+	});
+	
+	$('.collapseAll').click(function(e){
+		e.preventDefault();
+		collapseAll();
+	});
+	
+});
+	  
+</script>
+
+<!-- INLINE STYLE -->
+<style type="text/css">
+
+  .node {
+	cursor: pointer;
+  }
+
+  .overlay{
+	  background-color: #f7f7f7;
+  }
+
+ .node circle {
+	fill: #fff;
+	stroke: steelblue;
+	stroke-width: 3px;
+  }
+
+  .node text {
+	  font: 12px sans-serif;
+  }
+
+  .link {
+	  fill: none;
+	  stroke: #ccc;
+	  stroke-width: 2px;
+  }
+
+  .templink {
+	fill: none;
+	stroke: red;
+	stroke-width: 3px;
+  }
+
+  .ghostCircle.show{
+	  display:block;
+  }
+
+  .ghostCircle, .activeDrag .ghostCircle{
+	   display: none;
+  }
+  
+  .found {
+	fill: #ff4136;
+	stroke: #ff4136;
+  }
+  
+  .ui.menu>.item:first-child {
+  	border-radius: 0px;
+  	height: 40px;
+  }
+  
+  .ui.menu {
+  	border-radius: 0px;
+  	height: 40px;
+  	position: absolute;
+  	top: 0px;
+  	left: 0px;
+  	margin: 0px;
+  	min-width: 450px;
+  }
+  
+  .ui.search .prompt{
+  	border-radius: 0px;
+  }
+  
+  .footer{
+  	display: block;
+  	position: absolute;
+  	bottom: 0px;
+  	right: 0px;
+  	height: 30px;
+  	line-height: 30px;
+  	opacity: 0.7;
+  	background: #fff;
+  	width: 400px;
+  	color: #777;
+  	padding-left: 20px;
+  }
+
+</style>
+
+</head>
+<body>
+
+	<!-- MENU -->
+	<div class="ui pointing menu">
+	  <a class="active item">
+		<i class="home icon"></i> StixViz Rev.
+	  </a>
+	  <div class="right menu">
+	  	<form method="get" style="display: inline-block;"> 
+		<div class="item ui search">
+		  <div class="ui icon input">
+			<input class="prompt" type="text" placeholder="Search..." name="query">
+			<i class="search link icon"></i>
+		  </div>
+		  <div class="results"></div>
+		</div>
+		</form>
+		<div class="ui dropdown item" style="height: 40px;">
+		  Actions
+		  <i class="dropdown icon"></i>
+		  <div class="menu">
+			<a class="item expandAll">Expand All</a>
+			<a class="item collapseAll">Collapse All</a>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+	<!-- DISPLAY TREE -->
+	<div id="tree-container"></div>
+
+	<!-- D3 Tree JS -->
+	<script type="text/javascript" src="d3/dndTree.js?ver=1.1"></script>
+
+	<!-- FOOTER -->
+	<div class="footer">
+		&copy; 2015 Sohaib Shaheen
+	</div>
+	
+</body>
+</html>
