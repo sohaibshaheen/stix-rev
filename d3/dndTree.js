@@ -593,8 +593,57 @@ function collapseAllNotFound(d) {
     }
 }
 
+/*
+
+ZOOM LOGIC
+
+*/
+
+
+function interpolateZoom (translate, scale) {
+    var self = this;
+    return d3.transition().duration(350).tween("zoom", function () {
+        var iTranslate = d3.interpolate(zoomListener.translate(), translate),
+            iScale = d3.interpolate(zoomListener.scale(), scale);
+        return function (t) {
+            zoomListener
+                .scale(iScale(t))
+                .translate(iTranslate(t));
+            zoom();
+        };
+    });
+}
+
+function zoomClick() {
+    var clicked = d3.event.target,
+        direction = 1,
+        factor = 0.2,
+        target_zoom = 1,
+        center = [viewerWidth / 2, viewerHeight / 2],
+        extent = zoomListener.scaleExtent(),
+        translate = zoomListener.translate(),
+        translate0 = [],
+        l = [],
+        view = {x: translate[0], y: translate[1], k: zoomListener.scale()};
+
+    d3.event.preventDefault();
+    direction = (this.id === 'zoom_in') ? 1 : -1;
+    target_zoom = zoomListener.scale() * (1 + factor * direction);
+
+    if (target_zoom < extent[0] || target_zoom > extent[1]) { return false; }
+
+    translate0 = [(center[0] - view.x) / view.k, (center[1] - view.y) / view.k];
+    view.k = target_zoom;
+    l = [translate0[0] * view.k + view.x, translate0[1] * view.k + view.y];
+
+    view.x += center[0] - l[0];
+    view.y += center[1] - l[1];
+
+    interpolateZoom([view.x, view.y], view.k);
+}
+
 // Get JSON data
-d3.json("data/flare.json", function(error, treeData) {
+d3.json("data/report.json", function(error, treeData) {
 
 	// Call visit function to establish maxLabelLength
 	visit(treeData, function(d) {
@@ -607,7 +656,9 @@ d3.json("data/flare.json", function(error, treeData) {
 
 	// Append a group which holds all nodes and which the zoom Listener can act upon.
     svgGroup = baseSvg.append("g");
-
+    
+    d3.selectAll('button').on('click', zoomClick);
+    
     // Define the root
     window.root = treeData;
     root = treeData;
@@ -620,31 +671,6 @@ d3.json("data/flare.json", function(error, treeData) {
     
     // grab node names to populate search data
     format_search_data(root);
-    
-    /*
-    function searchTree(obj,search,path){
-		if(obj.name === search){ //if search is found return, add the object to the path and return it
-			path.push(obj);
-			return path;
-		}
-		else if(obj.children || obj._children){ //if children are collapsed d3 object will have them instantiated as _children
-		   var children = (obj.children) ? obj.children : obj._children;
-		   for(var i=0;i<children.length;i++){
-				path.push(obj);// we assume this path is the right one
-				var found = searchTree(children[i],search,path);
-				if(found){// we were right, this should return the bubbled-up path from the first if statement
-					return found;
-				}
-				else{//we were wrong, remove this parent from the path and continue iterating
-					path.pop();
-				}
-			}
-		}
-		else{//not the right object, return false so it will continue to iterate in the loop
-			return false;
-		}
-	}
-	*/
 	
 	// modified search tree function
 	function searchTree(d) {
@@ -711,15 +737,14 @@ d3.json("data/flare.json", function(error, treeData) {
 			update(root);
 			centerNode(root);
    			
-   			/*
-   			var paths = searchTree(root,result.title,[]);
-			if(typeof(paths) !== "undefined"){
-				openPaths(paths);
-			}
-			else{
-				alert(q+" was not found!");
-			}
-			*/
+   			
+   			//var paths = searchTree(root,result.title,[]);
+			//if(typeof(paths) !== "undefined"){
+				//openPaths(paths);
+			//}
+			//else{
+				//alert(q+" was not found!");
+			//}
    		}
   	});
 
